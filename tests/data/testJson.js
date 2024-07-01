@@ -298,6 +298,179 @@ const testCases = [
             error: 0,
         },
     },
+    //added by achintya
+    {
+        name: 'go : hello world',
+        reqObject: {
+            language: 'go',
+            script:
+                'package main\n' +
+                'import "fmt"\n' +
+                'func main() {\n' +
+                '    fmt.Println("hello world")\n' +
+                '}',
+        },
+        expectedResponse: {
+            val: 'hello world\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'go : print stdin',
+        reqObject: {
+            language: 'go',
+            script:
+                'package main\n' +
+                'import (\n' +
+                '    "bufio"\n' +
+                '    "os"\n' +
+                '    "fmt"\n' +
+                ')\n' +
+                'func main() {\n' +
+                '    scanner := bufio.NewScanner(os.Stdin)\n' +
+                '    for scanner.Scan() {\n' +
+                '        fmt.Println(scanner.Text())\n' +
+                '    }\n' +
+                '}',
+            stdin: '1 2 3',
+        },
+        expectedResponse: {
+            val: '1 2 3\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'rust : hello world',
+        reqObject: {
+            language: 'rust',
+            script:
+                'fn main() {\n' +
+                '    println!("hello world");\n' +
+                '}\n',
+        },
+        expectedResponse: {
+            val: 'hello world\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'rust : print stdin',
+        reqObject: {
+            language: 'rust',
+            script:
+                'use std::io::{self, BufRead};\n' +
+                'fn main() {\n' +
+                '    let stdin = io::stdin();\n' +
+                '    for line in stdin.lock().lines() {\n' +
+                '        println!("{}", line.unwrap());\n' +
+                '    }\n' +
+                '}\n',
+            stdin: '1 2 3',
+        },
+        expectedResponse: {
+            val: '1 2 3\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'go : factorial function',
+        reqObject: {
+            language: 'go',
+            script:
+                'package main\n' +
+                'import "fmt"\n' +
+                'func factorial(n int) int {\n' +
+                '    if n <= 1 {\n' +
+                '        return 1\n' +
+                '    }\n' +
+                '    return n * factorial(n-1)\n' +
+                '}\n' +
+                'func main() {\n' +
+                '    fmt.Println(factorial(5))\n' +
+                '}',
+        },
+        expectedResponse: {
+            val: '120\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'go : file input/output',
+        reqObject: {
+            language: 'go',
+            script:
+                'package main\n' +
+                'import (\n' +
+                '    "os"\n' +
+                '    "fmt"\n' +
+                '    "bufio"\n' +
+                ')\n' +
+                'func main() {\n' +
+                '    file, err := os.Open("input.txt")\n' +
+                '    if err != nil {\n' +
+                '        fmt.Println(err)\n' +
+                '        return\n' +
+                '    }\n' +
+                '    defer file.Close()\n' +
+                '    scanner := bufio.NewScanner(file)\n' +
+                '    for scanner.Scan() {\n' +
+                '        fmt.Println(scanner.Text())\n' +
+                '    }\n' +
+                '}',
+        },
+        expectedResponse: {
+            val: 'file content from input.txt\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'rust : factorial function',
+        reqObject: {
+            language: 'rust',
+            script:
+                'fn factorial(n: u32) -> u32 {\n' +
+                '    match n {\n' +
+                '        0 | 1 => 1,\n' +
+                '        _ => n * factorial(n - 1),\n' +
+                '    }\n' +
+                '}\n' +
+                'fn main() {\n' +
+                '    println!("{}", factorial(5));\n' +
+                '}',
+        },
+        expectedResponse: {
+            val: '120\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'rust : file input/output',
+        reqObject: {
+            language: 'rust',
+            script:
+                'use std::fs::File;\n' +
+                'use std::io::{BufReader, BufRead};\n' +
+                'fn main() {\n' +
+                '    let file = File::open("input.txt").expect("Unable to open file");\n' +
+                '    let reader = BufReader::new(file);\n' +
+                '    for line in reader.lines() {\n' +
+                '        println!("{}", line.expect("Unable to read line"));\n' +
+                '    }\n' +
+                '}',
+        },
+        expectedResponse: {
+            val: 'file content from input.txt\n',
+            status: 200,
+            error: 0,
+        },
+    },
 ]
 
 module.exports = { testCases }

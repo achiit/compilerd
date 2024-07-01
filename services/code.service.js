@@ -209,6 +209,8 @@ const _executeCode = async (req, res, response) => {
         language = req.language
         stdin = req.stdin
         const langConfig = LANGUAGES_CONFIG[language]
+        console.log('Language:', language);
+        console.log('Language Config:', langConfig);
         // Remove all files from tmp folder
         await _runScript('rm -rf /tmp/*', res)
 
@@ -216,6 +218,7 @@ const _executeCode = async (req, res, response) => {
         await fs.promises.writeFile(`/tmp/${langConfig.filename}`, code)
 
         const compileCommand = `cd /tmp/ && ${langConfig.compile}`
+        console.log('compileCommand', compileCommand)
         // Run compile command
         const compileLog = await _runScript(compileCommand, res, true)
         response.compileMessage =

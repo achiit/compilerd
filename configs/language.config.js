@@ -1,4 +1,4 @@
-const { CPP, C, PYTHON, JAVA, NODEJS, RUBY, PROMPTV1, PROMPTV2 } = require('../enums/supportedLanguages')
+const { CPP, C, PYTHON, JAVA, NODEJS, RUBY, PROMPTV1, PROMPTV2, DART, GO, RUST, PHP } = require('../enums/supportedLanguages')
 const ONE_MB = 1024 // ulimit uses Kilobyte as base unit
 const ALLOWED_RAM = process.env.ALLOWED_RAM || 512
 
@@ -36,7 +36,7 @@ const LANGUAGES_CONFIG = {
         run: 'node solution.js',
         timeout: 10,
         filename: 'solution.js',
-        memory: 786432, // Node.js v20 requires more initial memory, so initialize it to around 780MB (1.5 * 512MB). This value is higher than the previous 512MB but below 1GB to ensure ulimit catches excessive memory use without the GCR container being killed.
+        memory: 786432,
     },
     [RUBY]: {
         compile: 'ruby -c solution.rb',
@@ -50,6 +50,27 @@ const LANGUAGES_CONFIG = {
     },
     [PROMPTV2]: {
         model: 'gpt-3.5-turbo-1106',
+    },
+    [DART]: {
+        compile: 'dart compile exe solution.dart -o solution.exe',
+        run: 'dart solution.dart',
+        timeout: 10,
+        filename: 'solution.dart',
+        memory: ALLOWED_RAM * ONE_MB,
+    },
+    [GO]: {
+        compile: 'go build -o solution solution.go',
+        run: './solution',
+        timeout: 5,
+        filename: 'solution.go',
+        memory: ALLOWED_RAM * ONE_MB,
+    },
+    [RUST]: {
+        compile: 'rustc -o solution solution.rs',
+        run: './solution',
+        timeout: 5,
+        filename: 'solution.rs',
+        memory: ALLOWED_RAM * ONE_MB,
     },
 }
 
