@@ -180,7 +180,7 @@ const Landing = () => {
       />
 
       <a
-        href="https://github.com/achiit/frontend"
+        href="https://github.com/achiit/compilerd/tree/main/frontend"
         title="Fork me on GitHub"
         class="github-corner"
         target="_blank"
