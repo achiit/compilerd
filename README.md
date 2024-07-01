@@ -40,8 +40,29 @@
 </ol>
 
 
+## Changes by Achintya Singh:
+- Added the support for Go and Rust. Tried to add dart as well.
+- Changes in the README.md file to run the docker image(which was outdated).
+- Made a simple frontend which can be run by the following steps:
+  ```bash
+  cd frontend
+  npm install
+  ```
+  - after running the docker image of the compiler, create a .env file and then:
+  ```bash
+  COMPILER_API=https://f1c0-60-243-84-77.ngrok-free.app/api/execute/
+  ```
+  check the .env.sample for example 
+  - then run the below command:
+    
+ ```bash
+  npm run start
+ ```
 
-## About The Project : 
+
+
+
+## About The Project(Made by Achintya Singh) : 
 Compilerd is a online code judge for evaluating code submissions passed to it. It compiles and executes code in several languages and returns the result and various other properties in the response. The judge supports several languages including C++, Python, C, JavaScript (Node.js) and Java. 
 This is a service that is build using nodejs and express in the backend.
 It is fully customizable and can be adjusted as per requirement. Also, it has been tried and tested on Google Cloud Run and it just works seamlessly.
