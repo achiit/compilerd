@@ -50,10 +50,11 @@
   npm install
   ```
   - after running the docker image of the compiler, create a .env file and then:
+    check the .env.sample for example 
   ```bash
   COMPILER_API=https://f1c0-60-243-84-77.ngrok-free.app/api/execute/
   ```
-  check the .env.sample for example 
+
   - then run the below command:
     
  ```bash
