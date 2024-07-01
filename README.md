@@ -42,6 +42,7 @@
 
 ## Changes by Achintya Singh:
 - Added the support for Go and Rust. Tried to add dart as well.
+- Added total 8 test cases for go and rust.
 - Changes in the README.md file to run the docker image(which was outdated).
 - Made a simple frontend which can be run by the following steps:
   ```bash
